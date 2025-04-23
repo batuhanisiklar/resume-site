@@ -1,0 +1,6 @@
+# .vs klasörü
+.vs/
+# Diğer geçici dosyalar
+*.log
+*.user
+*.suo
