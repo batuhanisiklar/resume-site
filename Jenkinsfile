@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'resumeSite_container'    // Docker image ismi
-        CONTAINER_NAME = 'resumeSite'   // Container ismi
+        IMAGE_NAME = 'resume-site_container'    // Docker image ismi
+        CONTAINER_NAME = 'resume-site'   // Container ismi
     }
 
     stages {
