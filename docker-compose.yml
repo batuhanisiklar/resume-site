@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mvcapp:
-    container_name: ResumeSite-container
+    container_name: resume-site-container
     build:
       context: .
       dockerfile: Dockerfile
