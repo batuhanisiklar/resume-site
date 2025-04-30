@@ -1,37 +1,22 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = 'resume-site_container'    // Docker image ismi
-        CONTAINER_NAME = 'resume-site'   // Container ismi
-    }
-
     stages {
-        stage('Pull Git Repo') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/batuhanisiklar/resumeSite.git'
+                git 'https://github.com/batuhanisiklar/resumeSite.git'
             }
         }
-        stage('Build Docker Image') {
+
+        stage('Stop & Remove Old Containers') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker-compose down'
             }
         }
-        stage('Stop Old Container') {
+
+        stage('Build & Start Containers') {
             steps {
-                script {
-                    sh """
-                    if [ \$(docker ps -q -f name=$CONTAINER_NAME) ]; then
-                        docker stop $CONTAINER_NAME
-                        docker rm $CONTAINER_NAME
-                    fi
-                    """
-                }
-            }
-        }
-        stage('Run New Container') {
-            steps {
-                sh 'docker run -d --name $CONTAINER_NAME -p 90:90 $IMAGE_NAME'
+                sh 'docker-compose up --build -d'
             }
         }
     }

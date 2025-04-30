@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mvcapp:
+    container_name: ResumeSite-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "90:90"
+    restart: always
