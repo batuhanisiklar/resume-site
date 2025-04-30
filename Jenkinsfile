@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Stop & Remove Old Containers') {
             steps {
-                sh 'docker-compose down'
+                bat 'docker-compose down'
             }
         }
         stage('Build & Start Containers') {
             steps {
-                sh 'docker-compose up --build -d'
+                bat 'docker-compose up --build -d'
             }
         }
     }
